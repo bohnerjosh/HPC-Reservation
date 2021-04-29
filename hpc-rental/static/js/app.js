@@ -87,7 +87,7 @@ class Login extends React.Component {
                 }}>Login</button>
             </form>
             <p style={styles.curserPointer} onClick={() => {
-                  this.props.onGoCreate()  }> 
+                  this.props.onGoCreate()  }}> 
                 No profile? Make one here! </p>
           </div>
         );
@@ -143,7 +143,7 @@ class ProfileCreate extends React.Component {
             </form>
 
             <p style={styles.curserPointer} onClick={() => {
-                  this.props.onGoLogin()  }> 
+                  this.props.onGoLogin()  }}> 
                 Go back to login! </p>
 
           </div>
