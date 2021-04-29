@@ -74,3 +74,7 @@ def create_profile():
     db.session.commit() 
 
     return render_template('index.html')
+
+@app.route('/test/', methods=['GET'])
+def test():
+    return render_template('test.html')
