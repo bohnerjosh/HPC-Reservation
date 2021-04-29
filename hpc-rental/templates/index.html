@@ -1,24 +1,36 @@
-<!DOCTYPE HTML>
+<!doctype html>
+
 <html>
-</html>
-    <head>
-        <title>HPC Rental</title>
-        <link rel="stylesheet" type="text/css" href="main.css">
-      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
-    </head>
 
-    <body>
-        <h1>This is a title</h1>
+<head>
 
-       <div id="main-content">
-           <p>This is a paragraph</p>
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
-       </div>
+  <!-- UNCOMMENT FOR INCLUDING CUSTOM CSS
+  <link href="css/site.css" rel="stylesheet"></link>
+  -->
 
-   </body>
-       <script src="https://code.jquery.com/jquery-3.5.1.min.js">
-       </script>
+</head>
 
-       <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns" crossorigin="anonymous"></script>
+<body>
+
+  <div id="content">
+  </div>
+
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js" integrity="sha384-xrRywqdh3PHs8keKZN+8zzc5TX0GRTLCcmivcbNJWm2rs5C8PRhcEn3czEjhAO9o" crossorigin="anonymous"></script>
+
+  <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+
+  <script src="https://unpkg.com/react@17/umd/react.development.js" crossorigin></script>
+  <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js" crossorigin></script>
+
+  <script
+    type="text/babel"
+    src="{{ url_for('static', filename='js/app.js') }}">
+  </script>
+
+</body>
 
 </html>
