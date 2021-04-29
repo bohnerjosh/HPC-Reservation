@@ -5,6 +5,9 @@ class App extends React.Component {
         this.state = {
             view: 'login'
         };
+        this.onLogin = this.onLogin.bind(this);
+        this.onGoCreate = this.onGoCreate.bind(this);
+        this.onGoLogin = this.onGoLogin.bind(this);
     }
 
     onLogin() {
@@ -25,12 +28,12 @@ class App extends React.Component {
     }
 
     render() {
-        let component = <Login onLogin={ () => this.onLogin() } />;
+        let component = <Login onLogin={this.onLogin()} onGoCreate={this.onGoCreate}/>;
         if (this.state.view == 'avengers') {
             component = <Avengers />;
         }
         else if (this.state.view == 'createProfile') {
-            component = <ProfileCreate />;
+            component = <ProfileCreate onGoLogin={this.onGoLogin()} />;
         }
 
         return (
