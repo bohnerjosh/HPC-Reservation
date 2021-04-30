@@ -28,7 +28,7 @@ class App extends React.Component {
     }
 
     render() {
-        let component = <Login onLogin={this.onLogin()} onGoCreate={this.onGoCreate}/>;
+        let component = <Login onLogin={this.onLogin} onGoCreate={this.onGoCreate}/>;
         if (this.state.view == 'avengers') {
             component = <Avengers />;
         }
@@ -86,7 +86,7 @@ class Login extends React.Component {
                     this.sendLoginRequest();
                 }}>Login</button>
             </form>
-            <p style={styles.curserPointer} onClick={() => {
+            <p onClick={() => {
                   this.props.onGoCreate()  }}> 
                 No profile? Make one here! </p>
           </div>
@@ -142,7 +142,7 @@ class ProfileCreate extends React.Component {
                 }}>Create Profile</button>
             </form>
 
-            <p style={styles.curserPointer} onClick={() => {
+            <p onClick={() => {
                   this.props.onGoLogin()  }}> 
                 Go back to login! </p>
 
@@ -150,7 +150,6 @@ class ProfileCreate extends React.Component {
         );
     }
 }
-
 
 class Avengers extends React.Component {
     constructor(props) {
@@ -204,6 +203,5 @@ class Avengers extends React.Component {
 
     }
 }
-
 
 ReactDOM.render(<App />, document.querySelector('#content'));
