@@ -12,7 +12,7 @@ class App extends React.Component {
 
     onLogin() {
         this.setState({
-            view: 'avengers'
+            view: 'main'
         });
     }
     onGoCreate() {
@@ -29,8 +29,8 @@ class App extends React.Component {
 
     render() {
         let component = <Login onLogin={this.onLogin} onGoCreate={this.onGoCreate}/>;
-        if (this.state.view == 'avengers') {
-            component = <Avengers />;
+        if (this.state.view == 'main') {
+            component = <Main />;
         }
         else if (this.state.view == 'createProfile') {
             component = <ProfileCreate onGoLogin={this.onGoLogin()} />;
@@ -151,7 +151,7 @@ class ProfileCreate extends React.Component {
     }
 }
 
-class Avengers extends React.Component {
+class Main extends React.Component {
     constructor(props) {
         super(props);
 
@@ -161,9 +161,9 @@ class Avengers extends React.Component {
             error: null 
         };
     }
-
+/*
     componentDidMount() {
-        fetch('/api/avengers/')
+        fetch('/api/main/')
         .then(result => result.json())
         .then(
             (result) => {
@@ -180,27 +180,9 @@ class Avengers extends React.Component {
             }
         );
     }
-
+*/
     render() {
-        if (this.state.error) {
-            return <div>Error! Avengers must have gotten snapped by Thanos!</div>
-        } else if (!this.state.isLoaded) {
-            return <div>Waiting for Avengers to assemble...</div>
-        } else {
-            return (
-                <div className="avengers">
-                    <h1>Avengers Assembled!</h1>
-                    <ul>
-                        {this.state.avengers.map(hero => (
-                        <li key={hero}>
-                            {hero}
-                        </li>
-                        ))}
-                    </ul>
-                </div>
-            );
-        }
-
+        <p> reservations go here! </p>
     }
 }
 
