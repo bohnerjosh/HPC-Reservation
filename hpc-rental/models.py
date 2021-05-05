@@ -27,3 +27,18 @@ class User(db.Model):
             'password': self.password,
             'email': self.email,
         }
+class Reserved(db.model):
+    HPC_id = db.Column(db.Integer, primary_key=True)
+    username = db.Column(db.String(16), unique=False, nullable=False)
+    checkout_time  = db.Column(db.String(16), unique=False, nullable=False)
+    checkout_length = db.Column(db.String(16), unique=False, nullable=False)
+    def __repr__(self):
+        return '<User %r>' % self.username
+        
+    def serialize(self):
+        return {
+            'HPC_id': self.HPC_id,
+            'username': self.username,
+            'checkout_time': self.checkout_time,
+            'checkout_length': self.checkout_length,
+        }
