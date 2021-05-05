@@ -16,6 +16,14 @@ db = SQLAlchemy(app)
 
 from models import User
 
+@app.before_first_request
+def app_init():
+    try:
+        profile.query.all()
+
+    except:
+        db.create_all()
+
 @app.route('/')
 def index():
     return render_template('index.html')
