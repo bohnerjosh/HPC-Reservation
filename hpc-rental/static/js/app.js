@@ -109,7 +109,7 @@ class ProfileCreate extends React.Component {
         .then(
             (result) => {
                 if (result == 'ok') {
-                    this.props.onLogin();
+                    this.props.onGoLogin();
                 } else {
                     alert('Cannot create profile right now.');
                 }
