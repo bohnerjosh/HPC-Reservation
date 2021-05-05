@@ -86,6 +86,11 @@ def create_profile():
 def refresh():
     return 'ok'
 
+@app.route('/api/logout/', methods=['GET'])
+def refresh():
+    del session['username']
+    return 'ok'
+
 @app.route('/api/store-reserve/', methods=['POST'])
 def store_reserve():
     return 'ok'
