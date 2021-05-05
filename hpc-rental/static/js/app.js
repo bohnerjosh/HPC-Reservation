@@ -3,7 +3,7 @@ class App extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            view: 'login'
+            view: 'createProfile'
         };
         this.onLogin = this.onLogin.bind(this);
         this.onGoCreate = this.onGoCreate.bind(this);
@@ -29,11 +29,12 @@ class App extends React.Component {
 
     render() {
         let component = <Login onLogin={this.onLogin} onGoCreate={this.onGoCreate}/>;
+        //let component = <ProfileCreate onGoLogin={this.onGoLogin}/>;
         if (this.state.view == 'main') {
             component = <Main />;
         }
         else if (this.state.view == 'createProfile') {
-            component = <ProfileCreate onGoLogin={this.onGoLogin()} />;
+            component = <ProfileCreate onGoLogin={this.onGoLogin} />;
         }
 
         return (
@@ -86,9 +87,12 @@ class Login extends React.Component {
                     this.sendLoginRequest();
                 }}>Login</button>
             </form>
-            <p onClick={() => {
-                  this.props.onGoCreate()  }}> 
-                No profile? Make one here! </p>
+
+            <a href="#" onClick={(evt) => {
+                  evt.preventDefault();
+                  this.props.onGoCreate();  }}> 
+                No profile? Make one here! </a>
+
           </div>
         );
     }
@@ -107,11 +111,11 @@ class ProfileCreate extends React.Component {
                 if (result == 'ok') {
                     this.props.onLogin();
                 } else {
-                    alert('Bad username/password combo.');
+                    alert('Cannot create profile right now.');
                 }
             },
             (error) => {
-                alert('General login error');
+                alert('General error');
             }
         );
     }
@@ -142,9 +146,10 @@ class ProfileCreate extends React.Component {
                 }}>Create Profile</button>
             </form>
 
-            <p onClick={() => {
-                  this.props.onGoLogin()  }}> 
-                Go back to login! </p>
+            <a onClick={(evt) => {
+                  evt.preventDefault();
+                  this.props.onGoLogin();  }}> 
+                Go back to login! </a>
 
           </div>
         );
