@@ -14,12 +14,12 @@ app.config['SQLALCHEMY_DATABASE_URI'] = sqlite_uri
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app)
 
-from models import User
+from models import User 
 
 @app.before_first_request
 def app_init():
     try:
-        profile.query.all()
+        User.query.all()
 
     except:
         db.create_all()
@@ -33,7 +33,7 @@ def login():
     inuser = request.form['username']
     inpw = request.form['password']
     message = ""
-    usermatch = Profile.query.filter_by(username=inuser, password=inpw).first()
+    usermatch = User.query.filter_by(username=inuser, password=inpw).first()
     try:
         if usermatch.username == inuser and usermatch.password == inpw:
             session['username'] = usermatch.username
@@ -49,11 +49,10 @@ def login():
 
 @app.route('/api/create-profile/', methods=['POST'])
 def create_profile():
-
     showerror = False
     message = ""
     inuser = request.form['username']
-    usermatch = Profile.query.filter_by(username=inuser).first()
+    usermatch = User.query.filter_by(username=inuser).first()
     try:
         if usermatch.username == inuser:
             showerror = True
@@ -77,7 +76,7 @@ def create_profile():
     if showerror:
         return "not ok"
 
-    p = Profile(username=inuser, password=inpw, email=inemail)
+    p = User(username=inuser, password=inpw, email=inemail)
     db.session.add(p)
     db.session.commit() 
 
