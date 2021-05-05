@@ -30,14 +30,14 @@ def login():
         if usermatch.username == inuser and usermatch.password == inpw:
             session['username'] = usermatch.username
 
-            return redirect(url_for('main'))
+            return "ok"
         else:
         
             message = "Invalid username/password combination."
-            return render_template('login.html')
+            return "not ok"
     except:
         message = "Invalid username/password combination."
-    return render_template('index.html')
+    return "ok"
 
 @app.route('/api/create-profile/', methods=['POST'])
 def create_profile():
@@ -67,13 +67,25 @@ def create_profile():
         message = "Password cannot be blank."
     
     if showerror:
-        return render_template('index.html')
+        return "not ok"
 
     p = Profile(username=inuser, password=inpw, email=inemail)
     db.session.add(p)
     db.session.commit() 
 
-    return render_template('index.html')
+    return "ok"
+
+@app.route('/api/refresh/', methods=['GET'])
+def refresh():
+    return 'ok'
+
+@app.route('/api/store-reserve/', methods=['POST'])
+def store_reserve():
+    return 'ok'
+
+@app.route('/api/get-reserve/', methods=['GET'])
+def get_reserve():
+    return 'ok'
 
 @app.route('/test/', methods=['GET'])
 def test():
