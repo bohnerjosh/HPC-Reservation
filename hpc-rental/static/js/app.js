@@ -3,7 +3,7 @@ class App extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            view: 'createProfile'
+            view: 'login'
         };
         this.onLogin = this.onLogin.bind(this);
         this.onGoCreate = this.onGoCreate.bind(this);
