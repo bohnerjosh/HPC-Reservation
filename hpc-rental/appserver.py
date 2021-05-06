@@ -117,7 +117,7 @@ def store_reserve():
     in_time = request.form['time']
     checkout = str(datetime.time.now())
     check = Reserved.query.get(in_id).username
-    if !check:
+    if not check:
         R = Reserved(HPC_id=in_id, username = user, checkout_time = checkout, checkout_length = in_time)
         db.session.add(R)
         db.session.commit()
