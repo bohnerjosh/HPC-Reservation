@@ -3,17 +3,110 @@
 </html>
     <head>
         <title>HPC test</title>
-        <link rel="stylesheet" type="text/css" href="main.css">
+        <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/main.css') }}">
       <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
     </head>
 
-    <body>
-        <h1>Welcome to the HPC room</h1>
+    <body class="body"">
 
-       <div id="main-content">
-           <p>This is a paragraph</p>
+        <h1 class="text-center">Welcome to the HPC room</h1>
+    
+        <div id="HPC-Containers">
+            <div class="row Computer-row mx-auto">
+                <div class="col-xl-2 panel-left rounded Computer" Computerid="1">
+                    <h1 class="Computer-head text-center">HPC-1</h1>
+                    <img class="computer-img rounded mx-auto" src="{{ url_for('static', filename='img/HPC-green.png') }}">
+                    <h2 id="Status-1" class="text-center" text-color="#228B22">Available</h2>
+                    <h5 id="ReserveText-1" class="Reservation text-center" style="display:none;">Reserved by:</h5>
+                    <p id="ReserveName-1" class="RnameP text-center" style="display:none;"></p>
+                </div>
+                <div class="col-xl-2 panel rounded Computer" Computerid="2">
+                    <h1 class="Computer-head text-center">HPC-2</h1>
+                    <img class="computer-img rounded mx-auto" src="{{ url_for('static', filename='img/HPC-red-x.png') }}">
+                    <h2 id="Status-2" class="text-center" text-color="#228B22">Reserved</h2>
+                    <h5 id="ReserveText-2" class="Reservation text-center">Reserved by:</h5>
+                    <p id="ReserveName-2" class="RnameP text-center">Kevin Bacon</p>
+                </div>
+                <div class="col-xl-2 panel rounded Computer" Computerid="3">
+                    <h1 class="Computer-head text-center">HPC-3</h1>
+                    <img class="computer-img rounded mx-auto" src="{{ url_for('static', filename='img/HPC-green.png') }}">
+                    <h2 id="Status-3" class="text-center" text-color="#228B22">Available</h2>
+                    <h5 id="ReserveText-3" class="Reservation text-center" style="display:none;">Reserved by:</h5>
+                    <p id="ReserveName-3" class="RnameP text-center" style="display:none;"></p>
+                
+                </div>
+                <div class="col-xl-2 panel rounded Computer" Computerid="4">
+                    <h1 class="Computer-head text-center">HPC-4</h1>
+                    <img class="computer-img rounded mx-auto" src="{{ url_for('static', filename='img/HPC-green.png') }}">
+                    <h2 id="Status-4" class="text-center" text-color="#228B22">Available</h2>
+                    <h5 id="ReserveText-4" class="Reservation text-center" style="display:none;">Reserved by:</h5>
+                    <p id="ReserveName-4" class="RnameP text-center" style="display:none;"></p>
+                </div>
+            </div>
+            <div class="row Computer-row mx-auto">
+                <div class="col-xl-2 panel-left rounded Computer" Computerid="5">
+                    <h1 class="Computer-head text-center">HPC-5</h1>
+                    <img class="computer-img rounded mx-auto" src="{{ url_for('static', filename='img/HPC-green.png') }}">
+                    <h2 id="Status-5" class="text-center" text-color="#228B22">Available</h2>
+                    <h5 id="ReserveText-5" class="Reservation text-center" style="display:none;">Reserved by:</h5>
+                    <p id="ReserveName-5" class="RnameP text-center" style="display:none;"></p>
+                </div>
+                <div class="col-xl-2 panel rounded Computer" Computerid="6">
+                    <h1 class="Computer-head text-center">HPC-6</h1>
+                    <img class="computer-img rounded mx-auto" src="{{ url_for('static', filename='img/HPC-red-x.png') }}">
+                    <h2 id="Status-6" class="text-center" text-color="#228B22">Reserved</h2>
+                    <h5 id="ReserveText-6" class="Reservation text-center">Reserved by:</h5>
+                    <p id="ReserveName-6" class="RnameP text-center">Duolingo Bird</p>
+                </div>
+                <div class="col-xl-2 panel rounded Computer" Computerid="7">
+                    <h1 class="Computer-head text-center">HPC-7</h1>
+                    <img class="computer-img rounded mx-auto" src="{{ url_for('static', filename='img/HPC-green.png') }}">
+                    <h2 id="Status-7" class="text-center" text-color="#228B22">Available</h2>
+                    <h5 id="ReserveText-7" class="Reservation text-center" style="display:none;">Reserved by:</h5>
+                    <p id="ReserveName-7" class="RnameP text-center" style="display:none;"></p>
+                
+                </div>
+                <div class="col-xl-2 panel rounded Computer" Computerid="8">
+                    <h1 class="Computer-head text-center">HPC-8</h1>
+                    <img class="computer-img rounded mx-auto" src="{{ url_for('static', filename='img/HPC-green.png') }}">
+                    <h2 id="Status-8" class="text-center" text-color="#228B22">Available</h2>
+                    <h5 id="ReserveText-8" class="Reservation text-center" style="display:none;">Reserved by:</h5>
+                    <p id="ReserveName-8" class="RnameP text-center" style="display:none;"></p>
+                </div>
+            </div>
+        </div>
+        <div id="form-div">
+p
+            <div class="row mx-auto justify-content-center">
+                <div class="col-xl-3 panel rounded">
+                <form id=HPC-Form>
+                    <div class="form-group">
+                        <label class="text-center" for="hpc_id">HPC ID</label>
+                        <select class="form-control" id="hpc_id" name="hpc_id">
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                            <option value="6">6</option>
+                            <option value="7">7</option>
+                            <option value="8">8</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label class="text-center"for="time"># of hours for rental</label>
+                        <select class="form-control" id="time" name="time">
+                            <option value="2">2 hours</option>
+                            <option value="4">4 hours</option>
+                            <option value="12">12 hours</option>
+                            <option value="24">24 hours</option>
+                        </select>
+                    </div>
+                    <button class="btn btn-primary rent-btn text-center">Reserve</button>
+                </form>
+            </div>
+        </div>
 
-       </div>
 
    </body>
        <script src="https://code.jquery.com/jquery-3.5.1.min.js">
