@@ -111,7 +111,7 @@ def logout():
 
 @app.route('/api/store-reserve/', methods=['POST'])
 def store_reserve():
-    // getting form data
+    # getting form data
     in_id = request.form['hpc_id']
     user = session['username']
     in_time = request.form['time']
