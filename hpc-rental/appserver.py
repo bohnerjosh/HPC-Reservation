@@ -21,6 +21,7 @@ from models import User, Reserved
 def app_init():
     try:
         User.query.all()
+        Reserved.query.all()
 
     except:
         db.create_all()
@@ -112,11 +113,14 @@ def logout():
 @app.route('/api/store-reserve/', methods=['POST'])
 def store_reserve():
     # getting form data
-    in_id = request.form['hpc_id']
+    in_id = int(request.form['hpc_id'])
     user = session['username']
     in_time = request.form['time']
-    checkout = str(datetime.time.now())
-    check = Reserved.query.get(in_id).username
+    checkout = str(datetime.datetime.now())
+    try:
+        check = Reserved.query.get(in_id).username
+    except:
+        check = False
     if not check:
         R = Reserved(HPC_id=in_id, username = user, checkout_time = checkout, checkout_length = in_time)
         db.session.add(R)
