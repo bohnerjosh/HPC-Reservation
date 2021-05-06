@@ -48,11 +48,8 @@ class App extends React.Component {
         });
     }
     isAvailable(compId) {
-        //let data = {'id': compId};
-        let data = compId;
-        fetch('/api/get-reserve/', {
+        fetch('/api/get-reserve/?id='+compId, {
             method: 'GET',
-            body: data
         })
         .then(result => result.text())
         .then(
@@ -65,18 +62,15 @@ class App extends React.Component {
                 }
             },
             (error) => {
-                alert('General available error');
+                console.log(error);
             }
         );
         return "";
         
     }
     reserverName(compId) {
-        //let data = {'id': compId};
-        let data = compId;
-        fetch('/api/get-reserve/', {
+        fetch('/api/get-reserve/?id='+compId, {
             method: 'GET',
-            body: data
         })
         .then(result => result.text())
         .then(
@@ -89,7 +83,7 @@ class App extends React.Component {
                 }
             },
             (error) => {
-                alert('General reserver error');
+                console.log(error);
             }
         );
         return "";
@@ -427,7 +421,7 @@ class Main extends React.Component {
                     </div>
                      <button className="btn btn-primary rent-btn text-center" onClick={(evt) => {
                                 evt.preventDefault();
-                                this.cancelReserveRequest(); 
+                                this.sendCancelRequest(); 
                               }}>
                         Cancel Reserve
                     </button>
