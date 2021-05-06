@@ -48,7 +48,8 @@ class App extends React.Component {
         });
     }
     isAvailable(compId) {
-        let data = {'id': compId};
+        //let data = {'id': compId};
+        let data = compId;
         fetch('/api/get-reserve/', {
             method: 'GET',
             body: data
@@ -71,7 +72,8 @@ class App extends React.Component {
         
     }
     reserverName(compId) {
-        let data = {'id': compId};
+        //let data = {'id': compId};
+        let data = compId;
         fetch('/api/get-reserve/', {
             method: 'GET',
             body: data
@@ -105,9 +107,9 @@ class App extends React.Component {
         }
 
         return (
-            <div className="app">
+            <body className="app" "body">
                 {component}
-            </div>
+            </body>
         );
     }
 }
@@ -297,7 +299,7 @@ class Main extends React.Component {
 
     render() {
         return(
-        <body className="body">
+        <div>
            <h1 className="text-center">Welcome to the HPC room</h1>
     
             <a href="#" onClick={(evt) => {
@@ -434,7 +436,7 @@ class Main extends React.Component {
         </div>
         </div>
         </div>
-        </body>
+        </div>
         );
     }
 }
