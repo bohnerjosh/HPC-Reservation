@@ -39,13 +39,15 @@ class App extends React.Component {
     }
     checkReservations() {
         alert("checking reservations now (FIXME)");
+        fetch('/api/refresh/', {
+            method: 'Get',
+        })
         /*
         /api/refresh/
         /api/get-reserve/
         */
     }
     isAvailable(compId) {
-        /*
         let data = new URLSearchParams();
         data.append('id', compId);
         fetch('/api/get-reserve/', {
@@ -55,16 +57,21 @@ class App extends React.Component {
         .then(result => result.text())
         .then(
             (result) => {
+                if(result == "none") {
+                    return "Available";
+                }
+                else {
+                    return "Reserved";
+                }
             },
             (error) => {
                 alert('General error');
             }
         );
-        */
-        return "Available";
+        return "";
+        
     }
     reserverName(compId) {
-        /*
         let data = new URLSearchParams();
         data.append('id', compId);
         fetch('/api/get-reserve/', {
@@ -74,15 +81,21 @@ class App extends React.Component {
         .then(result => result.text())
         .then(
             (result) => {
+                if (result == "none") {
+                    return "";
+                }
+                else {
+                    return result;
+                }
             },
             (error) => {
                 alert('General error');
             }
         );
-        */
         return "";
     }
-// /api/cancel-reserve/
+
+
     render() {
         let component = <Login onLogin={this.onLogin} onGoCreate={this.onGoCreate}/>;
         if (this.state.view == 'main') {
