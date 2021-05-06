@@ -39,7 +39,6 @@ class App extends React.Component {
         })
     }
     checkReservations() {
-        //alert("checking reservations now (FIXME)");
         fetch('/api/refresh/', {
             method: 'Get',
         })
@@ -58,6 +57,7 @@ class App extends React.Component {
                 console.log(result);
                 if(result == "none") {
                     document.getElementById('img-'+compId).src = '/static/img/HPC-green.png';
+                    document.getElementById('Status-'+compId).innerHTML =  "Available";
                 }
                 else {
                     document.getElementById('Status-'+compId).innerHTML =  "Reserved";
@@ -79,6 +79,7 @@ class App extends React.Component {
         .then(
             (result) => {
                 if (result == "none") {
+                    document.getElementById('ReserveName-'+compId).innerHTML = "";
                 }
                 else {
                     document.getElementById('ReserveName-'+compId).innerHTML = result;
@@ -97,7 +98,8 @@ class App extends React.Component {
         let component = <Login onLogin={this.onLogin} onGoCreate={this.onGoCreate}/>;
         if (this.state.view == 'main') {
             component = <Main checkReservations={this.checkReservations} onLogout={this.onLogout}
-                                isAvailable={this.isAvailable} reserverName={this.reserverName} checkReservations={this.checkReservations} />;
+                                isAvailable={this.isAvailable} reserverName={this.reserverName} 
+                                checkReservations={this.checkReservations} />;
         }
         else if (this.state.view == 'createProfile') {
             component = <ProfileCreate onGoLogin={this.onGoLogin} />;
