@@ -138,7 +138,11 @@ def store_reserve():
 def get_reserve():
     # being passed the ID of the computer, get the username of the person that reserved it
     compID = request.args.get('id') # CHANGE THIS WHEN IT GETS ASSIGNED
-    username = Reserved.query.get(compID).username
+    print(compID)
+    try:
+        username = Reserved.query.get(compID).username
+    except:
+        username = False
     if username:
         print("Printing username")
         return username
