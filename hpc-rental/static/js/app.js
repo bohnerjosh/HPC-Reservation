@@ -287,6 +287,7 @@ class Main extends React.Component {
                 alert('General cancel error');
             }
         );
+        this.props.checkReservations(); 
     }
 
     componentDidMount() {
