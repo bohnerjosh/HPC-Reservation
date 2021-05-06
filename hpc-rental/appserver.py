@@ -72,7 +72,7 @@ def login():
             return "not ok"
     except:
         message = "Invalid username/password combination."
-    return "ok"
+    return 'not ok'
 
 @app.route('/api/create-profile/', methods=['POST'])
 def create_profile():
