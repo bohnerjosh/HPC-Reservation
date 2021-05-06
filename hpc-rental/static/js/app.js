@@ -130,11 +130,11 @@ class Login extends React.Component {
                 if (result == 'ok') {
                     this.props.onLogin();
                 } else {
-                    console.log('Bad username/password combo.');
+                    alert('Bad username/password combo.');
                 }
             },
             (error) => {
-                console.log('General login error');
+                alert('General login error');
             }
         );
     }
@@ -189,11 +189,11 @@ class ProfileCreate extends React.Component {
                 if (result == 'ok') {
                     this.props.onGoLogin();
                 } else {
-                    console.log('Cannot create profile right now.');
+                    alert('Cannot create profile right now.');
                 }
             },
             (error) => {
-                console.log('General creation error');
+                console.log('General account creation error');
             }
         );
     }
