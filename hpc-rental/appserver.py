@@ -139,7 +139,7 @@ def get_reserve():
         print("Printing username")
         return username
     else:
-        print("Returning none"_
+        print("Returning none")
         return 'none'
 
 @app.route('/test/', methods=['GET'])
