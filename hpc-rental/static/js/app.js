@@ -78,7 +78,7 @@ class App extends React.Component {
         */
         return "";
     }
-
+// /api/cancel-reserve/
     render() {
         let component = <Login onLogin={this.onLogin} onGoCreate={this.onGoCreate}/>;
         if (this.state.view == 'main') {
@@ -123,18 +123,24 @@ class Login extends React.Component {
         return (
           <div>
             <form id="login-form">
+              <div className="form-group col-md-3">
                 <input
                   type="text"
+                  className="form-control"
                   name="username"
                   id="username"
                   placeholder="username" />
+              </div>
+              <div className="form-group col-md-3">
                 <input
                   type="password"
+                  className="form-control"
                   name="password"
                   id="password"
                   placeholder="password" />
+              </div>
                 <br />
-                <button id="login-button" onClick={(evt) => {
+                <button className="btn btn-primary" id="login-button" onClick={(evt) => {
                     evt.preventDefault();
                     this.sendLoginRequest();
                 }}>Login</button>
@@ -176,23 +182,32 @@ class ProfileCreate extends React.Component {
         return (
           <div>
             <form id="profile-form">
+              <div className="form-group col-md-3">
                 <input
+                  className="form-control"
                   type="text"
                   name="email"
                   id="email"
                   placeholder="email" />
+              </div>
+              <div className="form-group col-md-3">
                 <input
+                  className="form-control"
                   type="text"
                   name="username"
                   id="username"
                   placeholder="username" />
+              </div>
+              <div className="form-group col-md-3">
                 <input
+                  className="form-control"
                   type="password"
                   name="password"
                   id="password"
                   placeholder="password" />
+              </div>
                 <br />
-                <button id="create-button" onClick={(evt) => {
+                <button className="btn btn-primary" id="create-button" onClick={(evt) => {
                     evt.preventDefault();
                     this.sendLoginRequest();
                 }}>Create Profile</button>
@@ -239,10 +254,29 @@ class Main extends React.Component {
                 alert('General error');
             }
         );
-
-
     }
 
+    sendReserveRequest() {
+        let formData = new FormData(document.getElementById('Cancel-Form'));
+        fetch('/api/cancel-reserve/', {
+            method: 'POST',
+            body: formData
+        })
+        .then(result => result.text())
+        .then(
+            (result) => {
+                if (result == 'ok') {
+                    alert('reservation cancelled');
+                    //this.props.onGoLogin();
+                } else {
+                    alert('Cancel Error');
+                }
+            },
+            (error) => {
+                alert('General error');
+            }
+        );
+    }
 
     componentDidMount() {
         setInterval(this.props.checkReservations(), 30000);
@@ -322,8 +356,8 @@ class Main extends React.Component {
                 </div>
             </div>
         </div>
+
         <div id="form-div">
-p
             <div className="row mx-auto justify-content-center">
                 <div className="col-xl-3 panel rounded">
                 <form id="HPC-Form">
@@ -357,6 +391,34 @@ p
                     </button>
                 </form>
             </div>
+        </div>
+
+      <div id="form-div">
+            <div className="row mx-auto justify-content-center">
+                <div className="col-xl-3 panel rounded">
+                <form id="Cancel-Form">
+                    <div className="form-group">
+                        <label className="text-center" htmlFor="hpc_id">HPC ID</label>
+                        <select className="form-control" id="hpc_id" name="hpc_id">
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                            <option value="6">6</option>
+                            <option value="7">7</option>
+                            <option value="8">8</option>
+                        </select>
+                    </div>
+                     <button className="btn btn-primary rent-btn text-center" onClick={(evt) => {
+                                evt.preventDefault();
+                                this.cancelReserveRequest(); 
+                              }}>
+                        Cancel Reserve
+                    </button>
+                </form>
+            </div>
+        </div>
         </div>
         </div>
         </div>
