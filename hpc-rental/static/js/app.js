@@ -297,7 +297,7 @@ class Main extends React.Component {
 
     render() {
         return(
-        <div>
+        <body className="body">
            <h1 className="text-center">Welcome to the HPC room</h1>
     
             <a href="#" onClick={(evt) => {
@@ -434,7 +434,7 @@ class Main extends React.Component {
         </div>
         </div>
         </div>
-        </div>
+        </body>
         );
     }
 }
