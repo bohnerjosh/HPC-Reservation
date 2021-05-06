@@ -32,7 +32,7 @@ def index():
 
 @app.route('/api/cancel-reserve/', methods=['POST'])
 def cancel_reserve():
-    compID = request.form['hpc_id'] # CHANGE THIS
+    compID = int(request.form['hpc_id']) # CHANGE THIS
     user_session = session['username']
     username = ""
     try: 
@@ -47,6 +47,7 @@ def cancel_reserve():
             to_delete = Reserved.query.get(compID)
             db.session.delete(to_delete)
             db.session.commit()
+            print("delete")
             return 'ok'
         else:
             return 'machine not rented by user'
