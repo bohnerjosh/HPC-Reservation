@@ -46,9 +46,11 @@ class App extends React.Component {
     }
     isAvailable(compId) {
         /*
+        let data = new URLSearchParams();
+        data.append('id', compId);
         fetch('/api/get-reserve/', {
             method: 'GET',
-            body: compId
+            body: data
         })
         .then(result => result.text())
         .then(
@@ -63,9 +65,11 @@ class App extends React.Component {
     }
     reserverName(compId) {
         /*
+        let data = new URLSearchParams();
+        data.append('id', compId);
         fetch('/api/get-reserve/', {
             method: 'GET',
-            body: compId
+            body: data
         })
         .then(result => result.text())
         .then(
