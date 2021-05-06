@@ -39,7 +39,7 @@ class App extends React.Component {
         })
     }
     checkReservations() {
-        alert("checking reservations now (FIXME)");
+        //alert("checking reservations now (FIXME)");
         fetch('/api/refresh/', {
             method: 'Get',
         })
