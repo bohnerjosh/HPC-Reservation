@@ -107,7 +107,7 @@ class App extends React.Component {
         }
 
         return (
-            <body className="app" "body">
+            <body className="app body">
                 {component}
             </body>
         );
