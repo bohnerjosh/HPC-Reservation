@@ -1,0 +1,33 @@
+.panel-left {
+    background-color: #00FFFF;
+    border: 3px solid black;
+    margin: 10px;
+    margin-left: 225px;
+}
+.panel {
+    background-color: #00FFFF;
+    border: 3px solid black;
+    margin: 10px;
+}
+.body {
+    background-color: #A9A9A9;
+}
+.computer-img {
+    display: flex;
+    justify-content: center;
+    border: 2px solid black;
+    width: 200px;
+    height: 200px;
+}
+.text-center {
+    color: black;
+    font-family: "Times New Roman", Times, serif;
+}
+
+.rent-btn {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 15px;
+    text-align: center
+}
+
