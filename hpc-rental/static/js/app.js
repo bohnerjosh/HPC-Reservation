@@ -48,27 +48,34 @@ class App extends React.Component {
         });
     }
     isAvailable(compId) {
+        let res = "yes";
         fetch('/api/get-reserve/?id='+compId, {
             method: 'GET',
         })
         .then(result => result.text())
         .then(
             (result) => {
+                console.log(result);
                 if(result == "none") {
-                    return "Available";
                 }
                 else {
-                    return "Reserved";
+                    res = "no";
                 }
             },
             (error) => {
                 console.log(error);
             }
         );
-        return "";
+        if (res == "yes") {
+            return "Available";
+        }
+        else {
+            return "Reserved";
+        }
         
     }
     reserverName(compId) {
+        let res = "";
         fetch('/api/get-reserve/?id='+compId, {
             method: 'GET',
         })
@@ -76,17 +83,22 @@ class App extends React.Component {
         .then(
             (result) => {
                 if (result == "none") {
-                    return "";
                 }
                 else {
-                    return result;
+                    res = result;
                 }
             },
             (error) => {
                 console.log(error);
             }
         );
-        return "";
+        
+        if (res == "") {
+            return "";
+        }
+        else {
+            return res;
+        }
     }
 
 
