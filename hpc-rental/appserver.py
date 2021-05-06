@@ -112,6 +112,25 @@ def create_profile():
 @app.route('/api/refresh/', methods=['GET'])
 def refresh():
     # check all the hpc machines to see if they need to be released
+    now = datetime.datetime.now().time()
+    now = (now.hour * 60 + now.minute) * 60 + now.second
+    HPCs = Reserved.query.all()
+    for hpc in HPCs:
+        temp = hpc
+        then = hpc.checkout_time
+        then_lst = then.split(',')
+        seconds = int(then_lst[-1])
+        rest = int(then_lst[0])
+        then = rest * 60 + seconds
+        t = now - then
+        reserve_time = int(hpc.checkout_length)
+        reserve_time = reserve_time * 60 * 60
+        print("This is T: %i" % t)
+        print("This is reserve time: %i" % reserve_time)
+        if t > reserve_time:
+            db.session.delete(temp)
+            db.session.commit()
+
     return 'ok'
 
 @app.route('/api/logout/', methods=['GET'])
@@ -125,13 +144,15 @@ def store_reserve():
     in_id = int(request.form['hpc_id'])
     user = session['username']
     in_time = request.form['time']
-    checkout = str(datetime.datetime.now())
+    checkout = datetime.datetime.now().time()
+    time = str(checkout.hour * 60 + checkout.minute)
+    time += "," + str(checkout.second)
     try:
         check = Reserved.query.get(in_id).username
     except:
         check = False
     if not check:
-        R = Reserved(HPC_id=in_id, username = user, checkout_time = checkout, checkout_length = in_time)
+        R = Reserved(HPC_id=in_id, username = user, checkout_time = time, checkout_length = in_time)
         db.session.add(R)
         db.session.commit()
         return 'ok'
