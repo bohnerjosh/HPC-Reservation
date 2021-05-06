@@ -87,7 +87,7 @@ def refresh():
     return 'ok'
 
 @app.route('/api/logout/', methods=['GET'])
-def refresh():
+def logout():
     del session['username']
     return 'ok'
 
