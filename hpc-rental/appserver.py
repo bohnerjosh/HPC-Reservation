@@ -32,13 +32,17 @@ def index():
 
 @app.route('/api/cancel-reserve/', methods=['POST'])
 def cancel_reserve():
-    compID = request.form['thing'] # CHANGE THIS
+    compID = request.form['hpc_id'] # CHANGE THIS
     user_session = session['username']
+    username = ""
     try: 
-        username = Reserved.query.get(compID).username
+        query = Reserved.query.get(compID)
+        username = query.username
+        doReturn = True
     except:
+        doReturn = False
         return 'machine not rented by user'
-    if username:
+    if doReturn:
         if username == user_session:
             to_delete = Reserved.query.get(compID)
             db.session.delete(to_delete)
@@ -137,13 +141,15 @@ def store_reserve():
 @app.route('/api/get-reserve/', methods=['GET'])
 def get_reserve():
     # being passed the ID of the computer, get the username of the person that reserved it
-    compID = request.args.get('id') # CHANGE THIS WHEN IT GETS ASSIGNED
-    print(compID)
+    compID = int(request.args.get('id')) # CHANGE THIS WHEN IT GETS ASSIGNED
     try:
-        username = Reserved.query.get(compID).username
+        query = Reserved.query.get(compID)
+        username = query.username
+        doReturn = True
+        #print(str(username.serialize()))
     except:
-        username = False
-    if username:
+        doReturn = False
+    if doReturn:
         print("Printing username")
         return username
     else:
