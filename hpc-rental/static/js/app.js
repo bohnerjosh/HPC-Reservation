@@ -40,12 +40,14 @@ class App extends React.Component {
     }
     checkReservations() {
         alert("checking reservations now (FIXME)");
+        /*
         fetch('/api/refresh/', {
             method: 'Get',
         })
+        */
     }
     isAvailable(compId) {
-        let data = {'id', compId};
+        let data = {'id': compId};
         fetch('/api/get-reserve/', {
             method: 'GET',
             body: data
@@ -61,14 +63,14 @@ class App extends React.Component {
                 }
             },
             (error) => {
-                alert('General error');
+                alert('General available error');
             }
         );
         return "";
         
     }
     reserverName(compId) {
-        let data = {'id', compId};
+        let data = {'id': compId};
         fetch('/api/get-reserve/', {
             method: 'GET',
             body: data
@@ -84,7 +86,7 @@ class App extends React.Component {
                 }
             },
             (error) => {
-                alert('General error');
+                alert('General reserver error');
             }
         );
         return "";
@@ -185,7 +187,7 @@ class ProfileCreate extends React.Component {
                 }
             },
             (error) => {
-                alert('General error');
+                alert('General creation error');
             }
         );
     }
@@ -263,7 +265,7 @@ class Main extends React.Component {
                 }
             },
             (error) => {
-                alert('General error');
+                alert('General store error');
             }
         );
     }
@@ -285,7 +287,7 @@ class Main extends React.Component {
                 }
             },
             (error) => {
-                alert('General error');
+                alert('General cancel error');
             }
         );
     }
@@ -342,7 +344,7 @@ class Main extends React.Component {
                     <img className="computer-img rounded mx-auto" src="{{ url_for('static', filename='img/HPC-green.png') }}" />
                     <h2 id="Status-5" className="text-center" text-color="#228B22"> {this.props.isAvailable("5")} </h2>
                     <h5 id="ReserveText-5" className="Reservation text-center" >Reserved by:</h5>
-                    <p id="ReserveName-5" className="RnameP text-center" > {this.props.isAvailable("5")} </p>
+                    <p id="ReserveName-5" className="RnameP text-center" > {this.props.reserverName("5")} </p>
                 </div>
                 <div className="col-xl-2 panel rounded Computer" computerid="6">
                     <h1 className="Computer-head text-center">HPC-6</h1>
