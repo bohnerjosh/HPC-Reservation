@@ -270,7 +270,7 @@ class Main extends React.Component {
         );
     }
 
-    sendReserveRequest() {
+    sendCancelRequest() {
         let formData = new FormData(document.getElementById('Cancel-Form'));
         fetch('/api/cancel-reserve/', {
             method: 'POST',
