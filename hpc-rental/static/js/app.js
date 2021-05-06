@@ -57,9 +57,11 @@ class App extends React.Component {
             (result) => {
                 console.log(result);
                 if(result == "none") {
+                    document.getElementById('img-'+compId).src = '/static/img/HPC-green.png';
                 }
                 else {
                     document.getElementById('Status-'+compId).innerHTML =  "Reserved";
+                    document.getElementById('img-'+compId).src = '/static/img/HPC-red-x.png';
                 }
             },
             (error) => {
@@ -242,7 +244,8 @@ class Main extends React.Component {
         this.state = {
             avengers: [],
             isLoaded: false,
-            error: null 
+            error: null,
+            path: '' 
         };
     }
 
@@ -299,7 +302,7 @@ class Main extends React.Component {
         <div>
            <h1 className="text-center">Welcome to the HPC room</h1>
     
-            <a href="#" onClick={(evt) => {
+            <a id="logout" classname="text-center" href="#" onClick={(evt) => {
                   evt.preventDefault();
                   this.props.onLogout(); }}> 
                 Logout </a>
@@ -308,21 +311,21 @@ class Main extends React.Component {
             <div className="row Computer-row mx-auto">
                 <div className="col-xl-2 panel-left rounded Computer" computerid="1">
                     <h1 className="Computer-head text-center">HPC-1</h1>
-                    <img className="computer-img rounded mx-auto" src="{{ url_for('static', filename='img/HPC-green.png') }}" />
+                    <img id="img-1" className="computer-img rounded mx-auto" src="" />
                     <h2 id="Status-1" className="text-center" text-color="#228B22"> {this.props.isAvailable("1")} </h2>
                     <h5 id="ReserveText-1" className="Reservation text-center" >Reserved by:</h5>
                     <p id="ReserveName-1" className="RnameP text-center" > {this.props.reserverName("1")}  </p>
                 </div>
                 <div className="col-xl-2 panel rounded Computer" computerid="2">
                     <h1 className="Computer-head text-center">HPC-2</h1>
-                    <img className="computer-img rounded mx-auto" src="{{ url_for('static', filename='img/HPC-red-x.png') }}" />
+                    <img id="img-2" className="computer-img rounded mx-auto" src="" />
                     <h2 id="Status-2" className="text-center" text-color="#228B22"> {this.props.isAvailable("2")} </h2>
                     <h5 id="ReserveText-2" className="Reservation text-center">Reserved by:</h5>
                     <p id="ReserveName-2" className="RnameP text-center"> {this.props.reserverName("2")} </p>
                 </div>
                 <div className="col-xl-2 panel rounded Computer" computerid="3">
                     <h1 className="Computer-head text-center">HPC-3</h1>
-                    <img className="computer-img rounded mx-auto" src="{{ url_for('static', filename='img/HPC-green.png') }}" />
+                    <img id="img-3" className="computer-img rounded mx-auto" src="" />
                     <h2 id="Status-3" className="text-center" text-color="#228B22"> {this.props.isAvailable("3")} </h2>
                     <h5 id="ReserveText-3" className="Reservation text-center" >Reserved by:</h5>
                     <p id="ReserveName-3" className="RnameP text-center" > {this.props.reserverName("3")} </p>
@@ -330,7 +333,7 @@ class Main extends React.Component {
                 </div>
                 <div className="col-xl-2 panel rounded Computer" computerid="4">
                     <h1 className="Computer-head text-center">HPC-4</h1>
-                    <img className="computer-img rounded mx-auto" src="{{ url_for('static', filename='img/HPC-green.png') }}" />
+                    <img id="img-4" className="computer-img rounded mx-auto" src="" />
                     <h2 id="Status-4" className="text-center" text-color="#228B22"> {this.props.isAvailable("4")} </h2>
                     <h5 id="ReserveText-4" className="Reservation text-center" >Reserved by:</h5>
                     <p id="ReserveName-4" className="RnameP text-center" > {this.props.reserverName("4")} </p>
@@ -339,21 +342,21 @@ class Main extends React.Component {
             <div className="row Computer-row mx-auto">
                 <div className="col-xl-2 panel-left rounded Computer" computerid="5">
                     <h1 className="Computer-head text-center">HPC-5</h1>
-                    <img className="computer-img rounded mx-auto" src="{{ url_for('static', filename='img/HPC-green.png') }}" />
+                    <img id="img-5" className="computer-img rounded mx-auto" src="" />
                     <h2 id="Status-5" className="text-center" text-color="#228B22"> {this.props.isAvailable("5")} </h2>
                     <h5 id="ReserveText-5" className="Reservation text-center" >Reserved by:</h5>
                     <p id="ReserveName-5" className="RnameP text-center" > {this.props.reserverName("5")} </p>
                 </div>
                 <div className="col-xl-2 panel rounded Computer" computerid="6">
                     <h1 className="Computer-head text-center">HPC-6</h1>
-                    <img className="computer-img rounded mx-auto" src="{{ url_for('static', filename='img/HPC-red-x.png') }}" />
+                    <img id="img-6" className="computer-img rounded mx-auto" src="" />
                     <h2 id="Status-6" className="text-center" text-color="#228B22"> {this.props.isAvailable("6")} </h2>
                     <h5 id="ReserveText-6" className="Reservation text-center">Reserved by:</h5>
                     <p id="ReserveName-6" className="RnameP text-center"> {this.props.reserverName("6")} </p>
                 </div>
                 <div className="col-xl-2 panel rounded Computer" computerid="7">
                     <h1 className="Computer-head text-center">HPC-7</h1>
-                    <img className="computer-img rounded mx-auto" src="{{ url_for('static', filename='img/HPC-green.png') }}" />
+                    <img id="img-7" className="computer-img rounded mx-auto" src="" />
                     <h2 id="Status-7" className="text-center" text-color="#228B22"> {this.props.isAvailable("7")} </h2>
                     <h5 id="ReserveText-7" className="Reservation text-center" >Reserved by:</h5>
                     <p id="ReserveName-7" className="RnameP text-center" > {this.props.reserverName("7")} </p>
@@ -361,7 +364,7 @@ class Main extends React.Component {
                 </div>
                 <div className="col-xl-2 panel rounded Computer" computerid="8">
                     <h1 className="Computer-head text-center">HPC-8</h1>
-                    <img className="computer-img rounded mx-auto" src="{{ url_for('static', filename='img/HPC-green.png') }}" />
+                    <img id="img-8"className="computer-img rounded mx-auto" src="" />
                     <h2 id="Status-8" className="text-center" text-color="#228B22"> {this.props.isAvailable("8")} </h2>
                     <h5 id="ReserveText-8" className="Reservation text-center" >Reserved by:</h5>
                     <p id="ReserveName-8" className="RnameP text-center" > {this.props.reserverName("8")} </p>
