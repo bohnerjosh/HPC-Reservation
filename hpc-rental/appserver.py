@@ -5,6 +5,7 @@
 from flask import Flask, render_template, request, session, redirect, url_for, jsonify, abort
 from flask_sqlalchemy import SQLAlchemy
 import os 
+import datetime
 
 app = Flask(__name__)
 app.secret_key = b'REPLACE_ME_x#pi*CO0@^z'
@@ -14,7 +15,7 @@ app.config['SQLALCHEMY_DATABASE_URI'] = sqlite_uri
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app)
 
-from models import User 
+from models import User, Reserved 
 
 @app.before_first_request
 def app_init():
@@ -27,6 +28,22 @@ def app_init():
 @app.route('/')
 def index():
     return render_template('index.html')
+
+@app.route('/api/cancel-reserve/', methods=['POST'])
+def cancel_reserve():
+    compID = request.args.get('thing') # CHANGE THIS
+    user_session = session['username']
+    username = Reserved.query.get(compID).username
+    if username:
+        if username == user_session:
+            to_delete = Reserved.query.get(compID)
+            db.session.delete(to_delete)
+            db.session.commit()
+        else:
+            return 'machine not rented by user'
+    else:
+        return 'machine not rented by user'
+             
 
 @app.route('/api/login/', methods=['POST'])
 def login():
@@ -84,6 +101,7 @@ def create_profile():
 
 @app.route('/api/refresh/', methods=['GET'])
 def refresh():
+    # check all the hpc machines to see if they need to be released
     return 'ok'
 
 @app.route('/api/logout/', methods=['GET'])
@@ -93,11 +111,30 @@ def logout():
 
 @app.route('/api/store-reserve/', methods=['POST'])
 def store_reserve():
-    return 'ok'
+    // getting form data
+    in_id = request.form['hpc_id']
+    user = session['username']
+    in_time = request.form['time']
+    checkout = str(datetime.time.now())
+    check = Reserved.query.get(in_id).username
+    if !check:
+        R = Reserved(HPC_id=in_id, username = user, checkout_time = checkout, checkout_length = in_time)
+        db.session.add(R)
+        db.session.commit()
+        return 'ok'
+
+    else:
+        return 'This machine is already reserved'
 
 @app.route('/api/get-reserve/', methods=['GET'])
 def get_reserve():
-    return 'ok'
+    # being passed the ID of the computer, get the username of the person that reserved it
+    compID = request.args.get('thing') # CHANGE THIS WHEN IT GETS ASSIGNED
+    username = Reserved.query.get(compID).username
+    if username:
+        return username
+    else:
+        return 'none'
 
 @app.route('/test/', methods=['GET'])
 def test():
