@@ -23,7 +23,9 @@
     color: black;
     font-family: "Times New Roman", Times, serif;
 }
-
+#content {
+    background-color: #00FFFF;
+}
 .rent-btn {
     display: flex;
     justify-content: center;
