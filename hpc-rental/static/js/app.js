@@ -3,8 +3,8 @@ class App extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            view: 'login'
-            
+            view: 'login',
+            time: Date.now() 
         };
         this.onLogin = this.onLogin.bind(this);
         this.onGoCreate = this.onGoCreate.bind(this);
@@ -40,11 +40,12 @@ class App extends React.Component {
     }
     checkReservations() {
         alert("checking reservations now (FIXME)");
-        /*
         fetch('/api/refresh/', {
             method: 'Get',
         })
-        */
+        this.setState({
+            time: Date.now()
+        });
     }
     isAvailable(compId) {
         let data = {'id': compId};
@@ -259,7 +260,6 @@ class Main extends React.Component {
             (result) => {
                 if (result == 'ok') {
                     alert('computer reserved');
-                    //this.props.onGoLogin();
                 } else {
                     alert('Cannot reserve right now.');
                 }
@@ -281,7 +281,6 @@ class Main extends React.Component {
             (result) => {
                 if (result == 'ok') {
                     alert('reservation cancelled');
-                    //this.props.onGoLogin();
                 } else {
                     alert('Cancel Error');
                 }
