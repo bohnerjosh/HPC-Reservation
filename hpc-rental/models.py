@@ -27,7 +27,7 @@ class User(db.Model):
             'password': self.password,
             'email': self.email,
         }
-class Reserved(db.model):
+class Reserved(db.Model):
     HPC_id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(16), unique=False, nullable=False)
     checkout_time  = db.Column(db.String(16), unique=False, nullable=False)
