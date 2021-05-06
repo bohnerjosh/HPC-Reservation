@@ -4,6 +4,7 @@ class App extends React.Component {
         super(props);
         this.state = {
             view: 'login'
+            
         };
         this.onLogin = this.onLogin.bind(this);
         this.onGoCreate = this.onGoCreate.bind(this);
@@ -42,10 +43,6 @@ class App extends React.Component {
         fetch('/api/refresh/', {
             method: 'Get',
         })
-        /*
-        /api/refresh/
-        /api/get-reserve/
-        */
     }
     isAvailable(compId) {
         let data = new URLSearchParams();
