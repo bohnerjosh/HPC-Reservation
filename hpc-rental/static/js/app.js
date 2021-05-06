@@ -106,7 +106,7 @@ class App extends React.Component {
         let component = <Login onLogin={this.onLogin} onGoCreate={this.onGoCreate}/>;
         if (this.state.view == 'main') {
             component = <Main checkReservations={this.checkReservations} onLogout={this.onLogout}
-                                isAvailable={this.isAvailable} reserverName={this.reserverName} />;
+                                isAvailable={this.isAvailable} reserverName={this.reserverName} checkReservations={this.checkReservations} />;
         }
         else if (this.state.view == 'createProfile') {
             component = <ProfileCreate onGoLogin={this.onGoLogin} />;
@@ -276,6 +276,7 @@ class Main extends React.Component {
                 alert('General store error');
             }
         );
+        this.props.checkReservations();
     }
 
     sendCancelRequest() {
