@@ -10,6 +10,8 @@ class App extends React.Component {
         this.onGoLogin = this.onGoLogin.bind(this);
         this.checkReservations = this.checkReservations.bind(this);
         this.onLogout = this.onLogout.bind(this);
+        this.isAvailable = this.isAvailable.bind(this);
+        this.reserverName = this.reserverName.bind(this);
     }
 
     onLogin() {
@@ -42,11 +44,46 @@ class App extends React.Component {
         /api/get-reserve/
         */
     }
+    isAvailable(compId) {
+        /*
+        fetch('/api/get-reserve/', {
+            method: 'GET',
+            body: compId
+        })
+        .then(result => result.text())
+        .then(
+            (result) => {
+            },
+            (error) => {
+                alert('General error');
+            }
+        );
+        */
+        return "Available";
+    }
+    reserverName(compId) {
+        /*
+        fetch('/api/get-reserve/', {
+            method: 'GET',
+            body: compId
+        })
+        .then(result => result.text())
+        .then(
+            (result) => {
+            },
+            (error) => {
+                alert('General error');
+            }
+        );
+        */
+        return "";
+    }
 
     render() {
         let component = <Login onLogin={this.onLogin} onGoCreate={this.onGoCreate}/>;
         if (this.state.view == 'main') {
-            component = <Main checkReservations={this.checkReservations} onLogout={this.onLogout}/>;
+            component = <Main checkReservations={this.checkReservations} onLogout={this.onLogout}
+                                isAvailable={this.isAvailable} reserverName={this.reserverName} />;
         }
         else if (this.state.view == 'createProfile') {
             component = <ProfileCreate onGoLogin={this.onGoLogin} />;
@@ -226,62 +263,62 @@ class Main extends React.Component {
                 <div className="col-xl-2 panel-left rounded Computer" computerid="1">
                     <h1 className="Computer-head text-center">HPC-1</h1>
                     <img className="computer-img rounded mx-auto" src="{{ url_for('static', filename='img/HPC-green.png') }}" />
-                    <h2 id="Status-1" className="text-center" text-color="#228B22">Available</h2>
+                    <h2 id="Status-1" className="text-center" text-color="#228B22"> {this.props.isAvailable("1")} </h2>
                     <h5 id="ReserveText-1" className="Reservation text-center" >Reserved by:</h5>
-                    <p id="ReserveName-1" className="RnameP text-center" ></p>
+                    <p id="ReserveName-1" className="RnameP text-center" > {this.props.reserverName("1")}  </p>
                 </div>
                 <div className="col-xl-2 panel rounded Computer" computerid="2">
                     <h1 className="Computer-head text-center">HPC-2</h1>
                     <img className="computer-img rounded mx-auto" src="{{ url_for('static', filename='img/HPC-red-x.png') }}" />
-                    <h2 id="Status-2" className="text-center" text-color="#228B22">Reserved</h2>
+                    <h2 id="Status-2" className="text-center" text-color="#228B22"> {this.props.isAvailable("2")} </h2>
                     <h5 id="ReserveText-2" className="Reservation text-center">Reserved by:</h5>
-                    <p id="ReserveName-2" className="RnameP text-center">Kevin Bacon</p>
+                    <p id="ReserveName-2" className="RnameP text-center"> {this.props.reserverName("2")} </p>
                 </div>
                 <div className="col-xl-2 panel rounded Computer" computerid="3">
                     <h1 className="Computer-head text-center">HPC-3</h1>
                     <img className="computer-img rounded mx-auto" src="{{ url_for('static', filename='img/HPC-green.png') }}" />
-                    <h2 id="Status-3" className="text-center" text-color="#228B22">Available</h2>
+                    <h2 id="Status-3" className="text-center" text-color="#228B22"> {this.props.isAvailable("3")} </h2>
                     <h5 id="ReserveText-3" className="Reservation text-center" >Reserved by:</h5>
-                    <p id="ReserveName-3" className="RnameP text-center" ></p>
+                    <p id="ReserveName-3" className="RnameP text-center" > {this.props.reserverName("3")} </p>
                 
                 </div>
                 <div className="col-xl-2 panel rounded Computer" computerid="4">
                     <h1 className="Computer-head text-center">HPC-4</h1>
                     <img className="computer-img rounded mx-auto" src="{{ url_for('static', filename='img/HPC-green.png') }}" />
-                    <h2 id="Status-4" className="text-center" text-color="#228B22">Available</h2>
+                    <h2 id="Status-4" className="text-center" text-color="#228B22"> {this.props.isAvailable("4")} </h2>
                     <h5 id="ReserveText-4" className="Reservation text-center" >Reserved by:</h5>
-                    <p id="ReserveName-4" className="RnameP text-center" ></p>
+                    <p id="ReserveName-4" className="RnameP text-center" > {this.props.reserverName("4")} </p>
                 </div>
             </div>
             <div className="row Computer-row mx-auto">
                 <div className="col-xl-2 panel-left rounded Computer" computerid="5">
                     <h1 className="Computer-head text-center">HPC-5</h1>
                     <img className="computer-img rounded mx-auto" src="{{ url_for('static', filename='img/HPC-green.png') }}" />
-                    <h2 id="Status-5" className="text-center" text-color="#228B22">Available</h2>
+                    <h2 id="Status-5" className="text-center" text-color="#228B22"> {this.props.isAvailable("5")} </h2>
                     <h5 id="ReserveText-5" className="Reservation text-center" >Reserved by:</h5>
-                    <p id="ReserveName-5" className="RnameP text-center" ></p>
+                    <p id="ReserveName-5" className="RnameP text-center" > {this.props.isAvailable("5")} </p>
                 </div>
                 <div className="col-xl-2 panel rounded Computer" computerid="6">
                     <h1 className="Computer-head text-center">HPC-6</h1>
                     <img className="computer-img rounded mx-auto" src="{{ url_for('static', filename='img/HPC-red-x.png') }}" />
-                    <h2 id="Status-6" className="text-center" text-color="#228B22">Reserved</h2>
+                    <h2 id="Status-6" className="text-center" text-color="#228B22"> {this.props.isAvailable("6")} </h2>
                     <h5 id="ReserveText-6" className="Reservation text-center">Reserved by:</h5>
-                    <p id="ReserveName-6" className="RnameP text-center">Duolingo Bird</p>
+                    <p id="ReserveName-6" className="RnameP text-center"> {this.props.reserverName("6")} </p>
                 </div>
                 <div className="col-xl-2 panel rounded Computer" computerid="7">
                     <h1 className="Computer-head text-center">HPC-7</h1>
                     <img className="computer-img rounded mx-auto" src="{{ url_for('static', filename='img/HPC-green.png') }}" />
-                    <h2 id="Status-7" className="text-center" text-color="#228B22">Available</h2>
+                    <h2 id="Status-7" className="text-center" text-color="#228B22"> {this.props.isAvailable("7")} </h2>
                     <h5 id="ReserveText-7" className="Reservation text-center" >Reserved by:</h5>
-                    <p id="ReserveName-7" className="RnameP text-center" ></p>
+                    <p id="ReserveName-7" className="RnameP text-center" > {this.props.reserverName("7")} </p>
                 
                 </div>
                 <div className="col-xl-2 panel rounded Computer" computerid="8">
                     <h1 className="Computer-head text-center">HPC-8</h1>
                     <img className="computer-img rounded mx-auto" src="{{ url_for('static', filename='img/HPC-green.png') }}" />
-                    <h2 id="Status-8" className="text-center" text-color="#228B22">Available</h2>
+                    <h2 id="Status-8" className="text-center" text-color="#228B22"> {this.props.isAvailable("8")} </h2>
                     <h5 id="ReserveText-8" className="Reservation text-center" >Reserved by:</h5>
-                    <p id="ReserveName-8" className="RnameP text-center" ></p>
+                    <p id="ReserveName-8" className="RnameP text-center" > {this.props.reserverName("8")} </p>
                 </div>
             </div>
         </div>
