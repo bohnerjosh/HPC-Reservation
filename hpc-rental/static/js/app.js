@@ -166,7 +166,7 @@ class Login extends React.Component {
                 }}>Login</button>
             </form>
 
-            <a href="#" onClick={(evt) => {
+            <a class="text-center" href="#" onClick={(evt) => {
                   evt.preventDefault();
                   this.props.onGoCreate();  }}> 
                 No profile? Make one here! </a>
