@@ -48,7 +48,7 @@ class App extends React.Component {
         });
     }
     isAvailable(compId) {
-        let res = "yes";
+        let res = "Available";
         fetch('/api/get-reserve/?id='+compId, {
             method: 'GET',
         })
@@ -59,20 +59,14 @@ class App extends React.Component {
                 if(result == "none") {
                 }
                 else {
-                    res = "no";
+                    document.getElementById('Status-'+compId).innerHTML =  "Reserved";
                 }
             },
             (error) => {
                 console.log(error);
             }
         );
-        if (res == "yes") {
-            return "Available";
-        }
-        else {
-            return "Reserved";
-        }
-        
+       return res; 
     }
     reserverName(compId) {
         let res = "";
@@ -85,20 +79,15 @@ class App extends React.Component {
                 if (result == "none") {
                 }
                 else {
-                    res = result;
+                    document.getElementById('ReserveName-'+compId).innerHTML = result;
                 }
             },
             (error) => {
                 console.log(error);
             }
         );
-        
-        if (res == "") {
-            return "";
-        }
-        else {
-            return res;
-        }
+    
+        return res;
     }
 
 
