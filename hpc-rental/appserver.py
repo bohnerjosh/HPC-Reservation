@@ -136,8 +136,10 @@ def get_reserve():
     compID = request.args.get('thing') # CHANGE THIS WHEN IT GETS ASSIGNED
     username = Reserved.query.get(compID).username
     if username:
+        print("Printing username")
         return username
     else:
+        print("Returning none"_
         return 'none'
 
 @app.route('/test/', methods=['GET'])
