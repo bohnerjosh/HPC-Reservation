@@ -80,10 +80,14 @@ class App extends React.Component {
             (result) => {
                 if (result == "none") {
                     document.getElementById('ReserveName-'+compId).innerHTML = "";
+                    document.getElementById('Status-'+compId).innerHTML =  "Available";
+                    document.getElementById('img-'+compId).src = '/static/img/HPC-green.png';
                 }
                 else {
                     document.getElementById('ReserveName-'+compId).innerHTML = result;
-                }
+                    document.getElementById('Status-'+compId).innerHTML =  "Reserved";
+                    document.getElementById('img-'+compId).src = '/static/img/HPC-red-x.png';
+                    }
             },
             (error) => {
                 console.log(error);
@@ -126,11 +130,11 @@ class Login extends React.Component {
                 if (result == 'ok') {
                     this.props.onLogin();
                 } else {
-                    alert('Bad username/password combo.');
+                    console.log('Bad username/password combo.');
                 }
             },
             (error) => {
-                alert('General login error');
+                console.log('General login error');
             }
         );
     }
@@ -185,11 +189,11 @@ class ProfileCreate extends React.Component {
                 if (result == 'ok') {
                     this.props.onGoLogin();
                 } else {
-                    alert('Cannot create profile right now.');
+                    console.log('Cannot create profile right now.');
                 }
             },
             (error) => {
-                alert('General creation error');
+                console.log('General creation error');
             }
         );
     }
@@ -261,13 +265,13 @@ class Main extends React.Component {
         .then(
             (result) => {
                 if (result == 'ok') {
-                    alert('computer reserved');
+                    console.log('computer reserved');
                 } else {
-                    alert('Cannot reserve right now.');
+                    console.log('Cannot reserve right now.');
                 }
             },
             (error) => {
-                alert('General store error');
+                console.log('General store error');
             }
         );
         this.props.checkReservations();
@@ -283,20 +287,23 @@ class Main extends React.Component {
         .then(
             (result) => {
                 if (result == 'ok') {
-                    alert('reservation cancelled');
+                    console.log('reservation cancelled');
                 } else {
-                    alert('Cancel Error');
+                    console.log('Cancel Error');
                 }
             },
             (error) => {
-                alert('General cancel error');
+                console.log('General cancel error');
             }
         );
         this.props.checkReservations(); 
     }
 
     componentDidMount() {
-        setInterval(this.props.checkReservations(), 30000);
+        console.log("iRAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA");
+        setInterval(console.log("5 seconds have passed"), 5000);
+        setInterval(this.props.checkReservations(), 5000);
+        setTimeout(console.log("setTimeout time"), 5000)
     }
 
     render() {
@@ -304,7 +311,7 @@ class Main extends React.Component {
         <div>
            <h1 className="text-center">Welcome to the HPC room</h1>
     
-            <a id="logout" classname="text-center" href="#" onClick={(evt) => {
+            <a id="logout" className="text-center" href="#" onClick={(evt) => {
                   evt.preventDefault();
                   this.props.onLogout(); }}> 
                 Logout </a>
